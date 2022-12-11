@@ -5,7 +5,7 @@ The key is using the custom uint256 type
 
 example:
 
-```cpp
+
   AVLTree tree = AVLTree();
 
   uint256 k = tree.random_256(); // for test only
@@ -18,8 +18,10 @@ example:
 
   std::cout << ret->value << std::endl;
   
- Output:
+output:
+
   12
+
 
 
 
