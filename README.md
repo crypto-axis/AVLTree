@@ -11,6 +11,7 @@ example:
 
     tree.insert(k, 0x123);
     tree.insert(uint256{0,0,0,5598}, 1245);
+    tree.insert(uint256{123456},1111);
     tree.insert(uint256{0xffffffffffffffff,0xffffffffffffffff,0xffffffffffffffff,0xffffffffffffffff}, 12);
 
     Node* ret = tree.search(uint256{0xffffffffffffffff,0xffffffffffffffff,0xffffffffffffffff,0xffffffffffffffff});
