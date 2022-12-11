@@ -30,6 +30,20 @@ struct uint256 {
         this->data[3] = 0;
     }
 
+    uint256(uint64_t d0){
+        this->data[0] = 0;
+        this->data[1] = 0;
+        this->data[2] = 0;
+        this->data[3] = d0;
+    }
+
+    uint256(int d0){
+        this->data[0] = 0;
+        this->data[1] = 0;
+        this->data[2] = 0;
+        this->data[3] = d0;
+    }
+
     std::string to_hex(){
         std::stringstream ss;
         ss << "0x";
