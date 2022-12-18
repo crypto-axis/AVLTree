@@ -536,61 +536,58 @@ uint256 AVLTree::random_256() {
 
 }
 
-//
-//int main() {
-//    std::cout << "START MAIN() ---------------------------" << std::endl;
-//    AVLTree tree = AVLTree();
-//
-//    /* ----------------------------Inserting keys --------------------------------------*/
-//    std::cout << "Start inserting keys" << std::endl;
-//    auto start = std::chrono::steady_clock::now();
-//    int i = 0;
-//    int colision = 0;
-//    uint256 k{};
-//    while (i < 1000000){
-//        k= tree.random_256();
-//        if (tree.insert(k, 0) != nullptr) { i++; tree.history.push_back(k);}
-//        else colision++;
-//
-//        if (i%100000 == 0) std::cout << i << std::endl;
-//    }
-//
-//
-//
-//
-//    auto duration = std::chrono::steady_clock::now() - start;
-//    std::cout << "Total duration " << std::chrono::duration_cast<std::chrono::duration<double>>(duration) ;
-//    std::cout << " for insert " << tree.history.size() << " keys" << std::endl;
-//
-//    std::cout << "Tree height =" << tree.getHeight() << std::endl;
-//
-//    /* ------------------------------------- searching keys ------------------------------------- */
-//    Node* ret;
-//    int found = 0;
-//    int lost = 0;
-//    i = 0;
-//
-//    std::cout << "Start retrieving keys ......." << std::endl;
-//    start = std::chrono::steady_clock::now();
-//    for(uint256 element : tree.history) {
-////        std::cout << "search for " << element.to_hex() << std::endl;
-//        ret = tree.search(element);
-//        if (ret == nullptr) {lost++;std::cout << "lost" << std::endl;}
-//        else found++;
-//        i++;
-//
-//        if (i%100000 == 0) std::cout << "Total=" << i << " / Found=" << found << " / Lost="
-//                                     << lost <<std::endl;
-//    }
-//
-//    duration = std::chrono::steady_clock::now() - start;
-//    std::cout << "Total duration " << std::chrono::duration_cast<std::chrono::duration<double>>(duration) ;
-//    std::cout << " for search " << tree.history.size() << " keys" << std::endl;
-//    std::cout << "Total=" << i << " / Found=" << found << " / Lost=" << lost <<std::endl;
-//    std::cout << "Colisions: " << colision << std::endl;
-//
-//
-//    return 0;
-//}
+void test_avl_tree() {
+    std::cout << "START MAIN() ---------------------------" << std::endl;
+    AVLTree tree = AVLTree();
+
+    /* ----------------------------Inserting keys --------------------------------------*/
+    std::cout << "Start inserting keys" << std::endl;
+    auto start = std::chrono::steady_clock::now();
+    int i = 0;
+    int colision = 0;
+    uint256 k{};
+    while (i < 1000000){
+        k= tree.random_256();
+        if (tree.insert(k, 0) != nullptr) { i++; tree.history.push_back(k);}
+        else colision++;
+
+        if (i%100000 == 0) std::cout << i << std::endl;
+    }
+
+
+
+
+    auto duration = std::chrono::steady_clock::now() - start;
+    std::cout << "Total duration " << std::chrono::duration_cast<std::chrono::duration<double>>(duration) ;
+    std::cout << " for insert " << tree.history.size() << " keys" << std::endl;
+
+    std::cout << "Tree height =" << tree.getHeight() << std::endl;
+
+    /* ------------------------------------- searching keys ------------------------------------- */
+    Node* ret;
+    int found = 0;
+    int lost = 0;
+    i = 0;
+
+    std::cout << "Start retrieving keys ......." << std::endl;
+    start = std::chrono::steady_clock::now();
+    for(uint256 element : tree.history) {
+//        std::cout << "search for " << element.to_hex() << std::endl;
+        ret = tree.search(element);
+        if (ret == nullptr) {lost++;std::cout << "lost" << std::endl;}
+        else found++;
+        i++;
+
+        if (i%100000 == 0) std::cout << "Total=" << i << " / Found=" << found << " / Lost="
+                                     << lost <<std::endl;
+    }
+
+    duration = std::chrono::steady_clock::now() - start;
+    std::cout << "Total duration " << std::chrono::duration_cast<std::chrono::duration<double>>(duration) ;
+    std::cout << " for search " << tree.history.size() << " keys" << std::endl;
+    std::cout << "Total=" << i << " / Found=" << found << " / Lost=" << lost <<std::endl;
+    std::cout << "Colisions: " << colision << std::endl;
+
+}
 
 

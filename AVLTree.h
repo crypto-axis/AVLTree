@@ -16,11 +16,12 @@
 #include <exception>
 #include "uint256.h" // custom type for uint256
 
+void test_avl_tree();
+
 
 struct NodePosition;
 struct Node;
 class AVLTree;
-
 
 struct Node{
     uint256 key;
