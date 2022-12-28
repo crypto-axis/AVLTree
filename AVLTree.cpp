@@ -320,11 +320,11 @@ void Node::remove() {
 // AVLTree methods
 
 AVLTree::AVLTree() {
-    uint256 a(0, 0, 0, 0);
+    uint256_t a("0");
     this->tree_root = new Node{a, 0, -1, nullptr, nullptr, nullptr,
                                0, nullptr, false, true};
 
-    this->history = std::list<uint256>();
+    this->history = std::list<uint256_t>();
 
 }
 
@@ -334,7 +334,7 @@ AVLTree::~AVLTree() {
     delete this->tree_root;
 }
 
-Node* AVLTree::insert(uint256 key, uint64_t value) {
+Node* AVLTree::insert(uint256_t key, uint64_t value) {
     /*
      * Insert a Node into the AVLTree
      *
@@ -406,7 +406,7 @@ void AVLTree::setRoot(Node* node) {
 
 }
 
-NodePosition AVLTree::insert_position(uint256 key) {
+NodePosition AVLTree::insert_position(uint256_t key) {
     /*
      * Check the position where to insert the node
      *
@@ -458,7 +458,7 @@ NodePosition AVLTree::insert_position(uint256 key) {
     return output;
 }
 
-Node *AVLTree::search(uint256 key) {
+Node *AVLTree::search(uint256_t key) {
     /*
      * Search if key exist in AVLTree
      *
@@ -513,81 +513,81 @@ std::uint64_t AVLTree::getHeight() {
      */
     return this->tree_root->height;
 }
+//
+//uint256_t AVLTree::random_256() {
+//    /*
+//     * Generate a random uint256_t, only use for testing purposes.
+//     */
+//
+//    std::random_device rd;
+//    std::mt19937_64 gen(rd());
+//
+////    std::uniform_int_distribution<std::uint64_t> dist(0, 10000);
+////    uint256_t out = {0, 0, 0, dist(gen)};
+//
+//    std::uniform_int_distribution<std::uint64_t> dist;
+//    uint64_t a = dist(gen);
+//    uint64_t b = dist(gen);
+//    uint64_t c = dist(gen);
+//    uint64_t d = dist(gen);
+//    uint256_t out = {a,b,c,d};
+//
+//    return out;
+//
+//}
 
-uint256 AVLTree::random_256() {
-    /*
-     * Generate a random uint256, only use for testing purposes.
-     */
-
-    std::random_device rd;
-    std::mt19937_64 gen(rd());
-
-//    std::uniform_int_distribution<std::uint64_t> dist(0, 10000);
-//    uint256 out = {0, 0, 0, dist(gen)};
-
-    std::uniform_int_distribution<std::uint64_t> dist;
-    uint64_t a = dist(gen);
-    uint64_t b = dist(gen);
-    uint64_t c = dist(gen);
-    uint64_t d = dist(gen);
-    uint256 out = {a,b,c,d};
-
-    return out;
-
-}
-
-void test_avl_tree() {
-    std::cout << "START MAIN() ---------------------------" << std::endl;
-    AVLTree tree = AVLTree();
-
-    /* ----------------------------Inserting keys --------------------------------------*/
-    std::cout << "Start inserting keys" << std::endl;
-    auto start = std::chrono::steady_clock::now();
-    int i = 0;
-    int colision = 0;
-    uint256 k{};
-    while (i < 1000000){
-        k= tree.random_256();
-        if (tree.insert(k, 0) != nullptr) { i++; tree.history.push_back(k);}
-        else colision++;
-
-        if (i%100000 == 0) std::cout << i << std::endl;
-    }
-
-
-
-
-    auto duration = std::chrono::steady_clock::now() - start;
-    std::cout << "Total duration " << std::chrono::duration_cast<std::chrono::duration<double>>(duration) ;
-    std::cout << " for insert " << tree.history.size() << " keys" << std::endl;
-
-    std::cout << "Tree height =" << tree.getHeight() << std::endl;
-
-    /* ------------------------------------- searching keys ------------------------------------- */
-    Node* ret;
-    int found = 0;
-    int lost = 0;
-    i = 0;
-
-    std::cout << "Start retrieving keys ......." << std::endl;
-    start = std::chrono::steady_clock::now();
-    for(uint256 element : tree.history) {
-//        std::cout << "search for " << element.to_hex() << std::endl;
-        ret = tree.search(element);
-        if (ret == nullptr) {lost++;std::cout << "lost" << std::endl;}
-        else found++;
-        i++;
-
-        if (i%100000 == 0) std::cout << "Total=" << i << " / Found=" << found << " / Lost="
-                                     << lost <<std::endl;
-    }
-
-    duration = std::chrono::steady_clock::now() - start;
-    std::cout << "Total duration " << std::chrono::duration_cast<std::chrono::duration<double>>(duration) ;
-    std::cout << " for search " << tree.history.size() << " keys" << std::endl;
-    std::cout << "Total=" << i << " / Found=" << found << " / Lost=" << lost <<std::endl;
-    std::cout << "Colisions: " << colision << std::endl;
-
-}
+//void test_avl_tree() {
+//    std::cout << "START MAIN() ---------------------------" << std::endl;
+//    AVLTree tree = AVLTree();
+//
+//    /* ----------------------------Inserting keys --------------------------------------*/
+//    std::cout << "Start inserting keys" << std::endl;
+//    auto start = std::chrono::steady_clock::now();
+//    int i = 0;
+//    int colision = 0;
+//    uint256_t k{};
+//    while (i < 1000000){
+//        k= tree.random_256();
+//        if (tree.insert(k, 0) != nullptr) { i++; tree.history.push_back(k);}
+//        else colision++;
+//
+//        if (i%100000 == 0) std::cout << i << std::endl;
+//    }
+//
+//
+//
+//
+//    auto duration = std::chrono::steady_clock::now() - start;
+//    std::cout << "Total duration " << std::chrono::duration_cast<std::chrono::duration<double>>(duration) ;
+//    std::cout << " for insert " << tree.history.size() << " keys" << std::endl;
+//
+//    std::cout << "Tree height =" << tree.getHeight() << std::endl;
+//
+//    /* ------------------------------------- searching keys ------------------------------------- */
+//    Node* ret;
+//    int found = 0;
+//    int lost = 0;
+//    i = 0;
+//
+//    std::cout << "Start retrieving keys ......." << std::endl;
+//    start = std::chrono::steady_clock::now();
+//    for(uint256_t element : tree.history) {
+////        std::cout << "search for " << element.to_hex() << std::endl;
+//        ret = tree.search(element);
+//        if (ret == nullptr) {lost++;std::cout << "lost" << std::endl;}
+//        else found++;
+//        i++;
+//
+//        if (i%100000 == 0) std::cout << "Total=" << i << " / Found=" << found << " / Lost="
+//                                     << lost <<std::endl;
+//    }
+//
+//    duration = std::chrono::steady_clock::now() - start;
+//    std::cout << "Total duration " << std::chrono::duration_cast<std::chrono::duration<double>>(duration) ;
+//    std::cout << " for search " << tree.history.size() << " keys" << std::endl;
+//    std::cout << "Total=" << i << " / Found=" << found << " / Lost=" << lost <<std::endl;
+//    std::cout << "Colisions: " << colision << std::endl;
+//
+//}
 
 
